@@ -27,6 +27,7 @@ export const MyEvents = async () => {
 
 const getEvents = async (contenedor, userAteendee) => {
 
+    try {
         const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees/${userAteendee._id}`);
         const events = await res.json();
     
@@ -44,4 +45,14 @@ const getEvents = async (contenedor, userAteendee) => {
        const text = "Cancelar Asistencia"
     
       PrintEvents(myEvents, contenedor, text);
+    } catch (error) {
+        const message = document.createElement("p");
+        message.className = "message"
+
+        message.textContent = "Todavia no tiene ningun evento confirmado";
+        message.style = "color: #152673";
+        contenedor.append(message)
+    }
+
+       
 }

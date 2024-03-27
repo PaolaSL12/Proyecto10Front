@@ -16,3 +16,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.message {
+    height: 90svh;
+    font-size: 1.7em;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

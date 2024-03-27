@@ -75,6 +75,8 @@ const submit = async (name, password, form) => {
 
     const response = await res.json();
 
+    console.log(response);
+
     localStorage.setItem("token", response.token);
     localStorage.setItem("user", JSON.stringify(response.user))
 

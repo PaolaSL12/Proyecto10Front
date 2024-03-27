@@ -1,7 +1,7 @@
 import { getlogged } from './components/logged';
-import { Events } from './pages/Events/Events';
 import { header } from './pages/Header/Header'
+import { Home } from './pages/Home/Home';
 import './style.css'
 
 header();
-Events()
+Home();

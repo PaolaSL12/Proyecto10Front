@@ -1,3 +1,4 @@
+import { header } from '../Header/Header';
 import './register.css'
 
 export const Register = () => {
@@ -68,6 +69,7 @@ const submit = async (name, email, password, form) => {
     } else {
         form.innerHTML = ""
         const pMessage = document.createElement("p");
+        pMessage.className = "pMessage"
 
         pMessage.textContent = "Se ha registrado exitosamente! 🎉";
         pMessage.style = "color: #152673";
@@ -83,6 +85,11 @@ const submit = async (name, email, password, form) => {
 
     const response = await res.json();
 
+
+    localStorage.setItem("token", response.token);
+    localStorage.setItem("user", JSON.stringify(response.user))
+
+    header()
  
 
     console.log(response);

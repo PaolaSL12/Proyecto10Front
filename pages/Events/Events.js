@@ -106,8 +106,10 @@ const confirmAttendee = async (id) => {
   const logged = JSON.parse(localStorage.getItem("user"));
 
   const userAteendee = await getlogged();
+  console.log(userAteendee);
 
   if (userAteendee === undefined) {
+
     const objetoFinal = JSON.stringify({
       name: logged.name,
       email: logged.email,
@@ -124,6 +126,7 @@ const confirmAttendee = async (id) => {
     };
     const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees`, opciones);
     const response = await res.json();
+    console.log(response);
     confirmAttendee(id);
   }
 

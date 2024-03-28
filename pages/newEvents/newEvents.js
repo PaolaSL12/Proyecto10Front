@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from "../../components/Loading/Loading";
 import { Events } from "../Events/Events";
 import "./newEvents.css";
 
@@ -6,8 +7,12 @@ export const newEvent = async () => {
 
   main.innerHTML = "";
 
+  showLoading(main);
+
   const divNewEvent = document.createElement("div");
   divNewEvent.className = "divNewEvent";
+
+  hideLoading();
 
   createEvent(divNewEvent);
 
@@ -38,14 +43,15 @@ const createEvent = (contenedor) => {
   form.append(title, date, location, description, img, button);
   contenedor.append(form);
 
-  form.addEventListener("submit", () =>
+  form.addEventListener("submit", () => {
+    showLoading(form);
     submitEvent(
       title.value,
       date.value,
       location.value,
       description.value,
       img.files
-    )
+    )}
   );
 };
 
@@ -70,6 +76,7 @@ const submitEvent = async (title, date, location, description, img) => {
   console.log(res.status);
 
   if (res.status === 201) {
+    hideLoading();
     
     alert("Evento creado exitosamente 🎉")
     Events()

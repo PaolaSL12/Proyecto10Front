@@ -4,16 +4,20 @@ import { Events } from '../Events/Events.js';
 
 
 import './login.css'
+import { hideLoading, showLoading } from '../../components/Loading/Loading.js';
 
 export const Login = () => {
     const main = document.querySelector("main");
 
     main.innerHTML = "";
 
+    showLoading(main);
+
     const divLogin = document.createElement("div");
     divLogin.className = "divLogin"
 
 
+    hideLoading()
     doLogin(divLogin)
 
     main.append(divLogin)
@@ -36,11 +40,17 @@ const doLogin = (contenedor) => {
     form.append(button);
     contenedor.append(form)
 
-    form.addEventListener("submit", () => submit(inputUser.value, inputPass.value, form))
+    form.addEventListener("submit", () => {
+        const existingErrors = form.querySelectorAll(".error");
+        existingErrors.forEach(error => error.remove());
+        showLoading(form)
+        submit(inputUser.value, inputPass.value, form)})
 }
 
 const submit = async (name, password, form) => {
 
+    try {
+        
     const objetoFinal = JSON.stringify({
         name,
         password
@@ -59,23 +69,20 @@ const submit = async (name, password, form) => {
 
     if (res.status === 400) {
         const pError = document.createElement("p");
-
-        pError.classList.add("error")
+        pError.classList.add("error");
         pError.textContent = "Usuario o contraseña incorrectos";
-        pError.style = "color: red";
+        pError.style.color = "red";
 
+
+        hideLoading();
+    
         form.append(pError);
-        return
+        return;
     }
 
-    const pError = document.querySelector(".error")
-    if (pError) {
-        pError.remove();
-    }
+ 
 
     const response = await res.json();
-
-    console.log(response);
 
     localStorage.setItem("token", response.token);
     localStorage.setItem("user", JSON.stringify(response.user))
@@ -83,4 +90,8 @@ const submit = async (name, password, form) => {
 
     header()
     Events()
+    } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+    }
+
 }

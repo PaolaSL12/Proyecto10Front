@@ -14,7 +14,7 @@
 
 .descDiv > h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 4em;
     font-style: italic;
     color: var(--blue-color);
     font-weight: 700;
@@ -26,3 +26,68 @@
     font-weight: 400;
     padding-top: var(--padding-m);
 }
+
+@media screen and (max-width: 1025px) {
+    .descDiv {
+        width: 90%;
+    }
+    
+    .descDiv > h1 {
+        font-size: 3.7em;
+        font-weight: 600;
+    }
+    
+    .descDiv > p {
+        font-size: 1.7em;
+    }
+    
+  }
+
+
+  @media screen and (max-width: 850px) {
+    .descDiv {
+        width: 90%;
+    }
+    
+    .descDiv > h1 {
+        font-size: 3em;
+        font-weight: 600;
+    }
+    
+    .descDiv > p {
+        font-size: 1.5em;
+    }
+    
+  }
+
+  @media screen and (max-width: 650px) {
+    .descDiv {
+        width: 90%;
+    }
+    
+    .descDiv > h1 {
+        font-size: 2em;
+        font-weight: 700;
+    }
+    
+    .descDiv > p {
+        font-size: 1.3em;
+    }
+    
+  }
+
+  @media screen and (max-width: 450px) {
+    .descDiv {
+        width: 90%;
+    }
+    
+    .descDiv > h1 {
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+    
+    .descDiv > p {
+        font-size: 1em;
+    }
+    
+  }

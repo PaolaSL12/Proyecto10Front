@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from "../../components/Loading/Loading";
 import { getlogged } from "../../components/logged";
 import { MyEvents } from "../myEvents/myEvents";
 import "./Events.css";
@@ -7,10 +8,14 @@ export const Events = async () => {
 
   main.innerHTML = "";
 
+  showLoading(main);
+
   const res = await fetch("https://proyecto10-back-phi.vercel.app/api/events/");
   const events = await res.json();
 
   const text = "Confirmar asistencia";
+
+  hideLoading();
 
   PrintEvents(events, main, text);
 };
@@ -52,7 +57,7 @@ export const PrintEvents = (events, contenedor, text) => {
         cancelAttendee(eventId);
         setTimeout(() => {
           MyEvents();
-        }, 100);
+        }, 500);
         
       }
     });
@@ -62,7 +67,7 @@ export const PrintEvents = (events, contenedor, text) => {
       deleteEvent(eventId);
       setTimeout(() => {
         Events();
-      }, 100);
+      }, 500);
     })
 
     divimg.className = "divImg";

@@ -20,6 +20,7 @@ form > input {
     padding: var(--padding-s);
     border: 3px solid var(--tertiary-color);
     background-color: var(--primary-color);
+    cursor: pointer;
 }
 
 form > button {
@@ -27,4 +28,5 @@ form > button {
     background-color: var( --secondary-color);
     border: 3px solid var( --secondary-color);
     padding: var(--padding-s);
+    cursor: pointer;
 }

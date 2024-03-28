@@ -1,12 +1,16 @@
 
 import { PrintEvents } from '/pages/Events/Events.js'
 import "./myEvents.css";
+import { hideLoading, showLoading } from '../../components/Loading/Loading';
+
 
 export const MyEvents = async () => {
     const main = document.querySelector("main");
 
     main.innerHTML = "";
 
+    try {
+    showLoading(main)
     const logged = JSON.parse(localStorage.getItem("user")).name
 
     const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees/name/${logged}`);
@@ -17,11 +21,15 @@ export const MyEvents = async () => {
     const divMyEvents = document.createElement("div");
     divMyEvents.className = "divMyEvents"
 
+    hideLoading();
     main.append(divMyEvents)
 
     getEvents(divMyEvents, userAteendee);
 
     return userAteendee
+    } catch (error) {
+        console.error("Error MyEvents:", error);
+    }    
 }
 
 

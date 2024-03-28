@@ -25,3 +25,28 @@
     justify-content: center;
     align-items: center;
 }
+
+
+@media screen and (max-width: 1025px) {
+    .message {
+        font-size: 1.5em;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .message {
+        font-size: 1.3em;
+        flex-wrap: wrap;
+        padding: var(--padding-l);
+        text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .message {
+        font-size: 1.3em;
+        flex-wrap: wrap;
+        padding: var(--padding-l);
+        text-align: center;
+    }
+  }

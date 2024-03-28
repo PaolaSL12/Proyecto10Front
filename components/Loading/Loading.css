@@ -10,3 +10,22 @@
     font-size: 1.7em;
     color: var(--blue-color);
 }
+
+
+@media screen and (max-width: 850px) {
+    .loadingText {
+        font-size: 1.5em;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .loadingText {
+        font-size: 1.3em;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .loadingText {
+        font-size: 1.2em;
+    }
+  }

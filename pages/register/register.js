@@ -47,7 +47,7 @@ const doRegister = async (contenedor) => {
       submit(name, email, password, form);
     } else {
       Register();
-      alert("Por favor, completa todos los campos correctamente.");
+      alert("Por favor, completa correctamente todos los campos. El nombre de usuario debe tener un mínimo de 3 caracteres. Proporciona un correo electrónico válido de al menos 7 caracteres y asegúrate de que cumpla con el formato estándar de correo electrónico. La contraseña debe tener entre 5 y 20 caracteres. ¡Gracias!");
     }
   });
 };

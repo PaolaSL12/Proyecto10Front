@@ -1,7 +1,9 @@
 
-import { PrintEvents } from '/pages/Events/Events.js'
 import "./myEvents.css";
 import { hideLoading, showLoading } from '../../components/Loading/Loading';
+import { getUserAttendee } from '../../components/userAttendee';
+import { getlogged } from '../../components/logged';
+import { PrintMyEvents } from '../../components/PrintMyEvents';
 
 
 export const MyEvents = async () => {
@@ -11,12 +13,8 @@ export const MyEvents = async () => {
 
     try {
     showLoading(main)
-    const logged = JSON.parse(localStorage.getItem("user")).name
 
-    const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees/name/${logged}`);
-    const response = await res.json();
-
-    const userAteendee = response[0]
+    const userAteendee = await getlogged();
 
     const divMyEvents = document.createElement("div");
     divMyEvents.className = "divMyEvents"
@@ -36,10 +34,7 @@ export const MyEvents = async () => {
 const getEvents = async (contenedor, userAteendee) => {
 
     try {
-        const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees/${userAteendee._id}`);
-        const events = await res.json();
-    
-        const myEvents = events.events
+      const myEvents = await getUserAttendee(userAteendee); 
 
        if (myEvents.length === 0) {
         const pMyEvents = document.createElement("p");
@@ -52,7 +47,7 @@ const getEvents = async (contenedor, userAteendee) => {
 
        const text = "Cancelar Asistencia"
     
-      PrintEvents(myEvents, contenedor, text);
+      PrintMyEvents(myEvents, contenedor, text);
     } catch (error) {
         const message = document.createElement("p");
         message.className = "message"
@@ -61,6 +56,5 @@ const getEvents = async (contenedor, userAteendee) => {
         message.style = "color: #152673";
         contenedor.append(message)
     }
-
-       
 }
+

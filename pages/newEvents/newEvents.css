@@ -12,6 +12,7 @@
     background-color: var(--primary-color);
     border-radius: 20px;
     border: 3px solid var(--tertiary-color);
+    padding: var(--padding-s);
 }
 
 .desc::placeholder {
@@ -33,4 +34,21 @@
     background-color: #f0f0f0;
     color: #333;
     cursor: pointer;
+  }
+
+.fileName {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 350px) {
+    .newEvent > input {
+        width: 280px;
+    }
+    .desc {
+        width: 280px;
+    }
+    
   }

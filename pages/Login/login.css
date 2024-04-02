@@ -30,3 +30,9 @@ form > button {
     padding: var(--padding-s);
     cursor: pointer;
 }
+
+@media screen and (max-width: 350px) {
+    form > input {
+        width: 280px;
+    }
+  }

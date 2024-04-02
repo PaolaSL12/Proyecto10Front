@@ -36,9 +36,9 @@ const printAttendees = async (attendees, contenedor) => {
         const idEv = document.createElement("span");
         idEv.textContent = attendee._id;
         idEv.className = "none";
+        const eventId = idEv.textContent;
 
         deleteButton.addEventListener("click", (e) => {
-            const eventId = idEv.textContent;
             deleteAttendee(eventId)
             setTimeout(() => {
                 getAttendees();
@@ -52,10 +52,10 @@ const printAttendees = async (attendees, contenedor) => {
         events.textContent = "Eventos Confirmados"
 
         if (attendee.events.length < 1 ) {
-            const pVacio = document.createElement("p");
-            pVacio.textContent = "No tiene eventos confirmados";
-            pVacio.className = "pVacio"
-            divEvents.append(pVacio)
+            deleteAttendee(eventId)
+            setTimeout(() => {
+                getAttendees();
+              }, 400);
         }
 
         for (const events of attendee.events) {

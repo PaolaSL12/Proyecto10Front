@@ -30,17 +30,26 @@ const createEvent = (contenedor) => {
   const img = document.createElement("input");
   const button = document.createElement("button");
 
+  const fileNameDiv = document.createElement("div"); 
+  fileNameDiv.className = "fileName"
+  fileNameDiv.textContent = "Archivo seleccionado: ";
+
   description.className = "desc";
   img.className = "img";
 
   title.placeholder = "Titulo";
-  date.placeholder = "Fecha";
+  date.type = "date"
   location.placeholder = "Ubicacion";
   description.placeholder = "Descripcion del evento";
   img.type = "file";
   button.textContent = "Enviar";
 
-  form.append(title, date, location, description, img, button);
+  img.addEventListener("change", (event) => {
+    const fileName = event.target.files[0].name; 
+    fileNameDiv.textContent = `Archivo seleccionado: ${fileName}`;
+  });
+
+  form.append(title, date, location, description, img, fileNameDiv, button);
   contenedor.append(form);
 
   form.addEventListener("submit", () => {
@@ -74,6 +83,12 @@ const submitEvent = async (title, date, location, description, img) => {
 
 
   console.log(res.status);
+
+  if (res.status === 400) {
+    alert("Error al crear el evento, todos los campos son obligatorios")
+    hideLoading();
+    return
+  }
 
   if (res.status === 201) {
     hideLoading();

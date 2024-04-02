@@ -12,7 +12,7 @@ form {
     justify-content: center;
     align-items: center;
     height: 300px;
-    gap: var(--gap-m);
+    gap: var(--gap-s);
 }
 
 form > input {

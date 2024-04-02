@@ -82,8 +82,6 @@ const submitEvent = async (title, date, location, description, img) => {
   const response = await res.json();
 
 
-  console.log(res.status);
-
   if (res.status === 400) {
     alert("Error al crear el evento, todos los campos son obligatorios")
     hideLoading();

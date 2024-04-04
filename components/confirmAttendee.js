@@ -29,28 +29,29 @@ export const confirmAttendee = async (id) => {
         console.log(error)
       }
   
+    } else {
+
+      const objetoFinal = JSON.stringify({
+        name: userAteendee.name,
+        email: userAteendee.email,
+        events: userAteendee.event,
+      });
+    
+      const opciones = {
+        method: "PUT",
+        body: objetoFinal,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+    
+      const confirm = await fetch(
+        `https://proyecto10-back-phi.vercel.app/api/attendees/${id}`,
+        opciones
+      );
+      const confirmed = await confirm.json();
+      localStorage.setItem('myEvents', JSON.stringify(confirmed.events));
     }
-  
-    const objetoFinal = JSON.stringify({
-      name: userAteendee.name,
-      email: userAteendee.email,
-      events: userAteendee.event,
-    });
-  
-    const opciones = {
-      method: "PUT",
-      body: objetoFinal,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-  
-    const confirm = await fetch(
-      `https://proyecto10-back-phi.vercel.app/api/attendees/${id}`,
-      opciones
-    );
-    const confirmed = await confirm.json();
-    localStorage.setItem('myEvents', JSON.stringify(confirmed.events));
   };
   

@@ -6,6 +6,8 @@ import { Register } from "../register/register";
 import "./Header.css";
 import { getAttendees } from "../attendees/attendees";
 import { newEvent } from "../newEvents/newEvents";
+import { headerA } from "../../components/headerA";
+
 
 export const header = () => {
   const header = document.querySelector("header");
@@ -18,32 +20,17 @@ export const header = () => {
   lNav.className = "L";
   rNav.className = "R";
 
-  const eventos = document.createElement("a");
-  eventos.textContent = "Eventos";
-  eventos.href = "#";
+  const eventos = headerA("Eventos", "");
 
-  const myEvents = document.createElement("a");
-  myEvents.href = "#";
-  myEvents.textContent = "MyEvents";
-  myEvents.className = "none"
+  const myEvents = headerA("MyEvents", "none");
 
-  const attendees = document.createElement("a");
-  attendees.href = "#";
-  attendees.textContent = "Attendees";
-  attendees.className = "none"
+  const attendees = headerA("Attendees", "none");
 
-  const newEvents = document.createElement("a");
-  newEvents.href = "#";
-  newEvents.textContent = "NewEvent";
-  newEvents.className = "none"
+  const newEvents = headerA("NewEvent", "none");
 
-  const register = document.createElement("a");
-  register.textContent = "Register";
-  register.href = "#";
+  const register = headerA("Register", "");
 
-  const login = document.createElement("a");
-  login.textContent = "Login";
-  login.href = "#";
+  const login = headerA("Login", "");
   
 
   eventos.addEventListener("click", () => {
@@ -58,7 +45,7 @@ export const header = () => {
     getAttendees();
   })
 
-newEvents.addEventListener("click", () => {
+  newEvents.addEventListener("click", () => {
     newEvent();
 })
 
@@ -74,7 +61,6 @@ newEvents.addEventListener("click", () => {
       localStorage.clear();
       window.location.reload();
       register.className = "";
-
       header();
       Events();
     }
@@ -89,7 +75,6 @@ newEvents.addEventListener("click", () => {
         newEvents.className = ""
     }
   }
-
 
   lNav.append(eventos, myEvents, attendees, newEvents);
   rNav.append(register, login);

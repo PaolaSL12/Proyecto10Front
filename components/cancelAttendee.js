@@ -1,4 +1,5 @@
-import { getlogged } from "./logged";
+import { API } from "../services/API";
+import { getlogged } from "../utils/logged";
 
 export const cancelAttendee = async (id) => {
     const userAteendee = await getlogged();
@@ -8,20 +9,13 @@ export const cancelAttendee = async (id) => {
       email: userAteendee.email,
       events: userAteendee.event,
     });
-  
-    const opciones = {
+
+    const cancel = await API({
       method: "PUT",
       body: objetoFinal,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
+      endpoint: `/attendees/cancel/${id}`,
+    });
   
-    const cancel = await fetch(
-      `https://proyecto10-back-phi.vercel.app/api/attendees/cancel/${id}`,
-      opciones
-    );
     const canceled = await cancel.json();
     localStorage.removeItem('myEvents')
     localStorage.setItem('myEvents', JSON.stringify(canceled.events));

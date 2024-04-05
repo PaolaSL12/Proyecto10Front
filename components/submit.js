@@ -1,44 +1,41 @@
 import { Events } from "../pages/Events/Events";
 import { header } from "../pages/Header/Header";
+import { API } from "../services/API";
 import { hideLoading } from "./Loading/Loading";
-import { optionsPost } from "./optionsPost";
 
 export const submit = async (name, password, form) => {
-
-    try {
+  try {
     const objetoFinal = JSON.stringify({
-        name,
-        password
+      name,
+      password,
     });
-    
-    const opciones =  optionsPost(objetoFinal)
-    
-    const res = await fetch("https://proyecto10-back-phi.vercel.app/api/users/login", opciones);
 
+    const res = await API({
+      method: "POST",
+      body: objetoFinal,
+      endpoint: "/users/login",
+    });
 
     if (res.status === 400) {
-        const pError = document.createElement("p");
-        pError.classList.add("error");
-        pError.textContent = "Usuario o contraseña incorrectos";
-        pError.style.color = "red";
+      const pError = document.createElement("p");
+      pError.classList.add("error");
+      pError.textContent = "Usuario o contraseña incorrectos";
+      pError.style.color = "red";
 
+      hideLoading();
 
-        hideLoading();
-    
-        form.append(pError);
-        return;
+      form.append(pError);
+      return;
     }
 
     const response = await res.json();
 
     localStorage.setItem("token", response.token);
-    localStorage.setItem("user", JSON.stringify(response.user))
+    localStorage.setItem("user", JSON.stringify(response.user));
 
-
-    header()
-    Events()
-    } catch (error) {
-        console.error("Error al iniciar sesión:", error);
-    }
-
-}
+    header();
+    Events();
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+  }
+};

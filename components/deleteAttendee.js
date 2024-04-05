@@ -1,14 +1,11 @@
+import { API } from "../services/API";
+
 export const deleteAttendee = async (id) => {
-    const opciones = {
+         
+      const deleteAttendee = await API({
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-    
-      const deleteAttendee = await fetch(
-        `https://proyecto10-back-phi.vercel.app/api/attendees/${id}`,
-        opciones
-      );
+        endpoint: `/attendees/${id}`,
+      });
+
       const canceled = await deleteAttendee.json();
 }

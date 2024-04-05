@@ -1,7 +1,7 @@
 
 import "./myEvents.css";
 import { hideLoading, showLoading } from '../../components/Loading/Loading';
-import { getlogged } from '../../components/logged';
+import { getlogged } from '../../utils/logged';
 import { getEvents } from "../../components/getEvents";
 
 

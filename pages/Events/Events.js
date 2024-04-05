@@ -1,5 +1,6 @@
 import { hideLoading, showLoading } from "../../components/Loading/Loading";
 import { PrintEvents } from "../../components/PrintEvents";
+import { API } from "../../services/API";
 import "./Events.css";
 
 export const Events = async () => {
@@ -9,7 +10,7 @@ export const Events = async () => {
 
   showLoading(main);
 
-  const res = await fetch("https://proyecto10-back-phi.vercel.app/api/events/");
+  const res = await API({ endpoint: "/events/" })
   const events = await res.json();
 
   const text = "Confirmar asistencia";

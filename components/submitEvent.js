@@ -1,4 +1,5 @@
 import { Events } from "../pages/Events/Events";
+import { BASE_URL } from "../utils/variables/Variable";
 import { hideLoading } from "./Loading/Loading";
 
 export const submitEvent = async (title, date, location, description, img) => {
@@ -14,7 +15,7 @@ export const submitEvent = async (title, date, location, description, img) => {
       body: formData
     };
   
-    const res = await fetch("https://proyecto10-back-phi.vercel.app/api/events/post", opciones);
+    const res = await fetch(`${BASE_URL}/events/post`, opciones);
     const response = await res.json();
   
     if (res.status === 400) {

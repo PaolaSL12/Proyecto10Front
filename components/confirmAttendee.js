@@ -1,4 +1,5 @@
-import { getlogged } from "./logged";
+import { API } from "../services/API";
+import { getlogged } from "../utils/logged";
 
 export const confirmAttendee = async (id) => {
     const logged = JSON.parse(localStorage.getItem("user"));
@@ -13,16 +14,13 @@ export const confirmAttendee = async (id) => {
         email: logged.email,
         events: [],
       });
-  
-      const opciones = {
+      
+      const res = await API({
         method: "POST",
         body: objetoFinal,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-      const res = await fetch(`https://proyecto10-back-phi.vercel.app/api/attendees`, opciones);
+        endpoint: `/attendees`,
+      });
+
       const response = await res.json();
       confirmAttendee(id);
       } catch (error) {
@@ -36,20 +34,13 @@ export const confirmAttendee = async (id) => {
         email: userAteendee.email,
         events: userAteendee.event,
       });
-    
-      const opciones = {
+
+      const confirm = await API({
         method: "PUT",
         body: objetoFinal,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
+        endpoint: `/attendees/${id}`,
+      });
     
-      const confirm = await fetch(
-        `https://proyecto10-back-phi.vercel.app/api/attendees/${id}`,
-        opciones
-      );
       const confirmed = await confirm.json();
       localStorage.setItem('myEvents', JSON.stringify(confirmed.events));
     }

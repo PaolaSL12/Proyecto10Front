@@ -20,38 +20,18 @@ export const header = () => {
   lNav.className = "L";
   rNav.className = "R";
 
-  const eventos = headerA("Eventos", "");
+  const eventos = headerA("Eventos", "", Events);
 
-  const myEvents = headerA("MyEvents", "none");
+  const myEvents = headerA("MyEvents", "none", MyEvents);
 
-  const attendees = headerA("Attendees", "none");
+  const attendees = headerA("Attendees", "none", getAttendees);
 
-  const newEvents = headerA("NewEvent", "none");
+  const newEvents = headerA("NewEvent", "none", newEvent);
 
-  const register = headerA("Register", "");
+  const register = headerA("Register", "", Register);
 
   const login = headerA("Login", "");
-  
 
-  eventos.addEventListener("click", () => {
-    Events();
-  });
-
-  myEvents.addEventListener("click", () => {
-    MyEvents();
-  })
-
-  attendees.addEventListener("click", () => {
-    getAttendees();
-  })
-
-  newEvents.addEventListener("click", () => {
-    newEvent();
-})
-
-  register.addEventListener("click", () => {
-    Register();
-  });
 
   login.addEventListener("click", () => {
     if (!localStorage.getItem("token") && login.textContent === "Login") {

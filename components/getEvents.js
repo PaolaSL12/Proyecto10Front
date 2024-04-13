@@ -28,7 +28,6 @@ export const getEvents = async (contenedor, userAteendee) => {
         message.textContent = "Todavia no tiene ningun evento confirmado";
         message.style = "color: #152673";
         contenedor.append(message)
-        console.log("aqui");
     }
 }
 
